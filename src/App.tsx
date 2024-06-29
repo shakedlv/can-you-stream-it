@@ -1,7 +1,7 @@
 
 import './App.css'
 import SearchBar from './components/SearchBar/SearchBar'
-import StreamingServiceCarousel from './components/StreamingServiceCarousel/StreamingServiceCarousel'
+import TitleInfo from './components/TitleInfo/TitleInfo'
 
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
   return (
     <div className='container'>
       <SearchBar/>
+      <TitleInfo/>
     </div>
   )
 }

@@ -1,18 +1,26 @@
-.searchItem{
+.searchItem {
+
     height: 40px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: center;   
+    align-items: center;
     gap: 12px;
     background-color: var(--color-primary-500);
-    
-    img{
+    cursor: pointer;
+
+    img {
         height: 100%;
     }
 }
 
-.searchItem:nth-child(odd){
+
+
+.searchItem:nth-child(odd) {
     background-color: var(--color-primary-400);
+}
+
+.searchItem:hover {
+    background-color: var(--color-primary-300);
 }

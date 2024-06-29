@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { StreamSource } from '../utils/types';
+import { createContext, useState } from 'react';
+import { SearchBarResult, StreamSource } from '../utils/types';
 import { useQuery } from 'react-query';
 import apiClient from '../utils/api';
 
@@ -33,11 +33,10 @@ function StreamDataProvider({ children }: StreamDataProviderTypes) {
 
     const { data: streams, isLoading, error, refetch } = useFetchStreams();
 
-    // Function to manually refetch streams (exposed through context)
     const fetchStreams = () => refetch();
 
     return (
-        <StreamDataContext.Provider value={{ streams, isLoading, error, fetchStreams }}>
+        <StreamDataContext.Provider value={{ streams, isLoading, error, fetchStreams}}>
             {children}
         </StreamDataContext.Provider>
     );

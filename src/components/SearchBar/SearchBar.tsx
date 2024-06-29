@@ -6,6 +6,8 @@ import { SearchBarResult } from "../../utils/types";
 import SearchBarResultItem from "../SearchBarResult/SearchBarResult";
 
 function SearchBar() {
+
+
     const [searchResultOpen, setSearchResultOpen] = useState<boolean>(false)
     const [searchResults, setSearchResults] = useState<SearchBarResult[]>([])
 
@@ -25,11 +27,21 @@ function SearchBar() {
         })
         setSearchResults(response.data['results'] as SearchBarResult[])
     }
+
+
+    const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+            setSearchResultOpen(false);
+        }
+    };
+
     useEffect(() => {
         setSearchResultOpen(searchResults.length > 0)
     }, [searchResults])
 
-
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscape);
+    }, []);
 
     return (
         <>
@@ -38,8 +50,10 @@ function SearchBar() {
                 <span><FaSearch /></span>
             </div>
             {
-                searchResults.length > 0 ? <div className="searchResult">
-                    {searchResults.map((result) => <SearchBarResultItem result={result} />)}
+                searchResultOpen ? <div className="searchResult">
+                    {searchResults.map((result) => <SearchBarResultItem result={result} closeResultSearch={() => {
+                        setSearchResultOpen(false);
+                    }} />)}
                 </div> : ''
             }
         </>
